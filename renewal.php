@@ -474,20 +474,20 @@ if (!isset($_SESSION['full_name'])) {
     <!-- Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
         <div class="logo">
-            <i class="fas fa-id-card"></i>
+            <img src="images/logo.jpg" alt="NRB Logo">
             <h2>NRB Portal</h2>
             <p>Citizen Services</p>
         </div>
 
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="citizen_dashboard.php" class="nav-link">
+                <a href="citizen.php" class="nav-link">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="apply_renewal.php" class="nav-link active">
+                <a href="renewal.php" class="nav-link active">
                     <i class="fas fa-file-alt"></i>
                     <span>Apply for Renewal</span>
                 </a>
@@ -694,7 +694,7 @@ if (!isset($_SESSION['full_name'])) {
                     </div>
 
                     <div class="button-group">
-                        <a href="citizen_dashboard.php" class="btn btn-back">
+                        <a href="citizen.php" class="btn btn-back">
                             <i class="fas fa-arrow-left"></i> Back
                         </a>
                         <button type="submit" name="btn_submit" class="btn btn-submit">

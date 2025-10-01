@@ -309,6 +309,15 @@
         .login-container {
             animation: slideUp 0.6s ease-out;
         }
+        @media (min-width: 768px) {
+    .login-container {
+    width: 90vw;          /* Make container width 90% of viewport width */
+    max-width: 600px;     /* Prevent container from being too wide on large desktops */
+    margin: auto;         /* Center container horizontally */
+
+
+    
+    }}
 
         @keyframes slideUp {
             0% {
@@ -386,7 +395,10 @@
 
                 <!-- Login Button -->
                 <button type="submit" class="login-btn" id="loginBtn">
+                
+
                     <div class="loading-spinner" id="loadingSpinner"></div>
+                    <a href="citizen.php">
                     <span id="loginText">Sign In</span>
                 </button>
 
@@ -401,7 +413,7 @@
                 </div>
 
                 <!-- Register Button -->
-                <a href="register.php" class="register-btn">
+                <a href="registration.php" class="register-btn">
                     <i class="fas fa-user-plus"></i> Create New Account
                 </a>
             </form>

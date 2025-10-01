@@ -3,8 +3,8 @@ session_start();
 
 // Check if user is logged in
 //if (!isset($_SESSION['user_id'])) {
- //   header('Location: login.php');
- //   exit();
+  //  header('Location: login.php');
+  //  exit();
 //}
 
 // For demonstration, set some default values if not set
@@ -51,6 +51,16 @@ if (!isset($_SESSION['full_name'])) {
             padding: 20px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            display: block;
+            border: 3px solid rgba(255,255,255,0.3);
         }
 
         .logo i {
@@ -376,7 +386,7 @@ if (!isset($_SESSION['full_name'])) {
             position: absolute;
             top: -5px;
             right: -5px;
-            background: #ff4757;
+            background: #000000d7;
             color: white;
             border-radius: 50%;
             min-width: 20px;
@@ -533,21 +543,9 @@ if (!isset($_SESSION['full_name'])) {
         .mobile-toggle {
             display: none;
         }
-        .logo {
-    text-align: center;
-    padding: 20px 0;
-}
-
-.logo-img {
-    width: 80px;       /* adjust size */
-    height: 80px;      /* adjust size */
-    border-radius: 50%; /* makes it circular */
-    object-fit: cover;  /* ensures it fits without distortion */
-    margin-bottom: 10px;
-}
-
     </style>
 </head>
+
 <body>
     <!-- Mobile Menu Toggle -->
     <button class="mobile-toggle" id="mobileToggle">
@@ -557,20 +555,20 @@ if (!isset($_SESSION['full_name'])) {
     <!-- Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
         <div class="logo">
-        <img src=".images/logo.jpg" alt="NRB Logo" style="width:80px; height:80px; border-radius:50%;">
+            <i class="fas fa-id-card"></i>
             <h2>NRB Portal</h2>
             <p>Citizen Services</p>
         </div>
 
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="citizen_dashboard.php" class="nav-link active">
+                <a href="citizen.php" class="nav-link active">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="apply_renewal.php" class="nav-link">
+                <a href="renewal.php" class="nav-link">
                     <i class="fas fa-file-alt"></i>
                     <span>Apply for Renewal</span>
                 </a>
@@ -584,8 +582,7 @@ if (!isset($_SESSION['full_name'])) {
             <li class="nav-item">
                 <a href="notifications.php" class="nav-link">
                     <i class="fas fa-bell"></i>
-                    <span>Notifications</span>
-                    <span class="notification-badge-menu" id="sidebarBadge" style="display: none;">0</span>
+                    <span class="notification-badge-menu" id="sidebarBadge">Notifications</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -595,7 +592,7 @@ if (!isset($_SESSION['full_name'])) {
                 </a>
             </li>
             <li class="nav-item" style="margin-top: 20px;">
-                <a href="logout.php" class="nav-link">
+                <a href="login.php" class="nav-link">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
@@ -613,28 +610,9 @@ if (!isset($_SESSION['full_name'])) {
             </div>
 
             <div class="header-actions">
-                <!-- Notification Button -->
-                <div class="notification-container">
-                    <button class="notification-btn" id="notificationBtn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
-                    </button>
-
-                    <!-- Notification Dropdown -->
-                    <div class="notification-dropdown" id="notificationDropdown">
-                        <div class="notification-header">
-                            <span class="notification-title">Notifications</span>
-                            <a href="#" class="mark-all-read" id="markAllRead">Mark all read</a>
-                        </div>
-                        <div class="notification-list" id="notificationList">
-                            <div class="no-notifications">
-                                <i class="fas fa-bell-slash"></i>
-                                <h4>No notifications yet</h4>
-                                <p>You'll receive updates here</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Include Notification Bell -->
+                <?php include 'notifications_bell.php'; ?>
+                
 
                 <!-- User Profile -->
                 <a href="profile.php" class="user-profile">
@@ -694,7 +672,7 @@ if (!isset($_SESSION['full_name'])) {
             <div class="quick-actions">
                 <h3>Quick Actions</h3>
                 <div class="action-buttons">
-                    <a href="apply_renewal.php" class="action-btn">
+                    <a href="renewal.php" class="action-btn">
                         <i class="fas fa-plus-circle"></i>
                         <div class="action-btn-text">
                             <h4>New Application</h4>
@@ -741,42 +719,6 @@ if (!isset($_SESSION['full_name'])) {
             });
         }
 
-        // Notification dropdown toggle
-        const notificationBtn = document.getElementById('notificationBtn');
-        const notificationDropdown = document.getElementById('notificationDropdown');
-
-        notificationBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            notificationDropdown.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.notification-container')) {
-                notificationDropdown.classList.remove('show');
-            }
-        });
-
-        // Load notification count
-        async function updateNotificationCount() {
-            try {
-                const response = await fetch('notification_handler.php?action=get_unread_count');
-                const data = await response.json();
-                
-                if (data.count !== undefined && data.count > 0) {
-                    document.getElementById('notificationBadge').textContent = data.count > 99 ? '99+' : data.count;
-                    document.getElementById('notificationBadge').style.display = 'flex';
-                    document.getElementById('sidebarBadge').textContent = data.count > 99 ? '99+' : data.count;
-                    document.getElementById('sidebarBadge').style.display = 'flex';
-                } else {
-                    document.getElementById('notificationBadge').style.display = 'none';
-                    document.getElementById('sidebarBadge').style.display = 'none';
-                }
-            } catch (error) {
-                console.error('Error loading notification count:', error);
-            }
-        }
-
         // Load dashboard statistics
         async function loadDashboardStats() {
             try {
@@ -795,11 +737,7 @@ if (!isset($_SESSION['full_name'])) {
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
-            updateNotificationCount();
             loadDashboardStats();
-            
-            // Update notification count every 30 seconds
-            setInterval(updateNotificationCount, 30000);
         });
     </script>
 </body>
