@@ -536,7 +536,7 @@ if (!isset($_SESSION['admin_id'])) {
 
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="admin_dashboard.php" class="nav-link active">
+                <a href="application.php" class="nav-link active">
                     <i class="fas fa-users"></i>
                     <span>Applicants</span>
                     <span class="badge">12</span>
@@ -548,36 +548,48 @@ if (!isset($_SESSION['admin_id'])) {
                     <span>Approved</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="denied.php" class="nav-link">
                     <i class="fas fa-times-circle"></i>
                     <span>Denied</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="printed.php" class="nav-link">
                     <i class="fas fa-print"></i>
                     <span>Printed</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="collected.php" class="nav-link">
                     <i class="fas fa-hand-holding"></i>
                     <span>Collected</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="overstayed.php" class="nav-link">
                     <i class="fas fa-clock"></i>
                     <span>Overstayed</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a href="statistics.php" class="nav-link">
                     <i class="fas fa-chart-bar"></i>
                     <span>Statistics</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="verification.php" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Verify Applications</span>
+                </a>
+            </li>
+
             <li class="nav-item" style="margin-top: 20px;">
                 <a href="controllers/logout.php" class="nav-link">
                     <i class="fas fa-sign-out-alt"></i>
@@ -706,17 +718,53 @@ if (!isset($_SESSION['admin_id'])) {
                             <tbody>
                                 <tr>
                                     <td>NRB-2025-001</td>
-                                    <td>John Banda</td>
-                                    <td>john@example.com</td>
+                                    <td>Silvester Chunga</td>
+                                    <td>silvesterchunga@gmail.com</td>
                                     <td>Renewal</td>
                                     <td><span class="status-badge status-pending">Pending</span></td>
                                     <td>2025-01-15</td>
+
                                     <td>
                                         <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
                                         <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
                                         <button class="action-btn btn-deny"><i class="fas fa-times"></i> Deny</button>
                                     </td>
                                 </tr>
+
+                                <tr>
+                                      <td>NRB-2025-002</td>
+                                            <td>Mable Simkonde</td>
+                                             <td>simkonde@gmail.com</td>
+                                             <td>Renewal</td>
+                                            <td><span class ="status-badge status-pending">Processed</span></td>
+                                     <td>2025-02-16</td>
+
+                                     <td>
+                                        <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
+                                        <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
+                                        <button class="action-btn btn-deny"><i class="fas fa-times"></i> Deny</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                      <td>NRB-2025-004</td>
+                                      <td>Jacquiline Evody</td>
+                                      <td>ojacki@gmail.com</td>
+                                      <td>Renewal</td>
+                                      <td><span class ="status-badge status-pending">Processed</span></td>
+                                     <td>2025-02-16</td>
+
+                                     <td>
+                                        <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
+                                        <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
+                                        <button class="action-btn btn-deny"><i class="fas fa-times"></i> Deny</button>
+                                    </td>
+                                </tr>
+
+
+
+
+
+
                             </tbody>
                         </table>
                     </div>

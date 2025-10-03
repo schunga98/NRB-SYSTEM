@@ -497,7 +497,7 @@ try {
 
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="citizen_dashboard.php" class="nav-link">
+                <a href="citizen.php" class="nav-link">
                     <i class="fas fa-home"></i>
                     <span>Dashboard</span>
                 </a>
